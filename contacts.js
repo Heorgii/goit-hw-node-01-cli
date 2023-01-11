@@ -21,7 +21,7 @@ const getContactById = async (contactId) => {
         const contact = contacts.find(contact => {
             return contact.id === contactId;
         });
-        return contact ? contact : null;
+        return contact;
 
     } catch (err) {
         console.log(err);
@@ -37,7 +37,7 @@ const removeContact = async (contactId) => {
             contacts.splice(index, 1);
             await fs.writeFile(contactsPath, JSON.stringify(contacts));
         }
-        return deleteContact ? deleteContact : null;
+        return deleteContact;
 
     } catch (err) {
         console.log(err);
