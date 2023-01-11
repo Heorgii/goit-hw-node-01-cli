@@ -33,10 +33,13 @@ const removeContact = async (contactId) => {
         const contacts = await listContacts();
         const index = contacts.findIndex(contact => contact.id === contactId);
         const deleteContact = contacts[index];
-        if (index.id !== -1) {
-            contacts.splice(index, 1);
-            await fs.writeFile(contactsPath, JSON.stringify(contacts));
+        if (index.id === -1) {
+            return null;
         }
+
+        contacts.splice(index, 1);
+        await fs.writeFile(contactsPath, JSON.stringify(contacts));
+
         return deleteContact;
 
     } catch (err) {
